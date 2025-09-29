@@ -11,7 +11,14 @@ import SwiftUI
 struct Book_Tracker_AppApp: App {
     var body: some Scene {
         WindowGroup {
-            SearchView()
+            TabView {
+                Tab("Home", systemImage: "home") {
+                    HomeView()
+                }
+                Tab("Search", systemImage: "magnifyingglass") {
+                    SearchView()
+                }
+            }
         }
     }
 }

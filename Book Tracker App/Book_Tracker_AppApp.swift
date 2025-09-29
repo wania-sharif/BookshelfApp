@@ -12,7 +12,7 @@ struct Book_Tracker_AppApp: App {
     var body: some Scene {
         WindowGroup {
             TabView {
-                Tab("Home", systemImage: "home") {
+                Tab("Home", systemImage: "house") {
                     HomeView()
                 }
                 Tab("Search", systemImage: "magnifyingglass") {

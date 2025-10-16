@@ -9,6 +9,9 @@ import SwiftUI
 
 @main
 struct Book_Tracker_AppApp: App {
+    //MARK: - properties
+    
+    //MARK: - body
     var body: some Scene {
         WindowGroup {
             TabView {
@@ -17,6 +20,9 @@ struct Book_Tracker_AppApp: App {
                 }
                 Tab("Search", systemImage: "magnifyingglass") {
                     SearchView()
+                }
+                Tab("My Shelves", systemImage: "square.fill.text.grid.1x2") {
+                    ShelvesView(books: Books.example)
                 }
             }
         }

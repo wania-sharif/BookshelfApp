@@ -8,11 +8,29 @@
 import SwiftUI
 
 struct ShelfView: View {
+    //MARK: - Properties
+    var books: Books
+    
+    var gridColumns = [
+        GridItem(.flexible()),
+        GridItem(.flexible()),
+    ]
+    
+    //MARK: - Body
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationStack {
+            ScrollView {
+                LazyVGrid(columns: gridColumns, spacing: 10) {
+                    ForEach(books.items){ book in
+                        BookListItemView(book: book, width: 130, height: 180)
+                    }
+                }
+            }
+            .navigationTitle("Shelf Name")
+        }
     }
 }
 
 #Preview {
-    ShelfView()
+    ShelfView(books: Books.example)
 }

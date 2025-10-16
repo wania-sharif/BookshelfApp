@@ -13,29 +13,32 @@ struct BookListItemView: View {
     var height: CGFloat
     
     var body: some View {
-        // If book has an image link, load it
-        if let url = book.imageLinks?.thumbnail {
-            AsyncImage(url: URL(string: url)){ phase in
-                if let image = phase.image {
-                    image
-                        .resizable()
-                        .frame(width: width, height: height)
-                        .aspectRatio(contentMode: .fit)
-                        .cornerRadius(2)
-                    
-                // If load fails, display error image
-                } else if phase.error != nil {
-                    Image(systemName: "exclamationmark.triangle.fill")
-                        .frame(width: width, height: height)
-                        .aspectRatio(contentMode: .fit)
-                        .border(Color.gray, width: 1)
-                } else {
-                    ProgressView()
+        VStack{
+            
+            // If book has an image link, load it
+            if let url = book.imageLinks?.thumbnail {
+                AsyncImage(url: URL(string: url)){ phase in
+                    if let image = phase.image {
+                        image
+                            .resizable()
+                            .frame(width: width, height: height)
+                            .aspectRatio(contentMode: .fit)
+                            .cornerRadius(2)
+                        
+                        // If load fails, display error image
+                    } else if phase.error != nil {
+                        Image(systemName: "exclamationmark.triangle.fill")
+                            .frame(width: width, height: height)
+                            .aspectRatio(contentMode: .fit)
+                            .border(Color.gray, width: 1)
+                    } else {
+                        ProgressView()
+                    }
                 }
+                .padding()
             }
-            .padding()
+            Text(book.volumeInfo.title)
         }
-        Text(book.volumeInfo.title)
     }
 }
 

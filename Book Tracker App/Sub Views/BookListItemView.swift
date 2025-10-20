@@ -37,7 +37,7 @@ struct BookListItemView: View {
                 }
                 .padding()
             }
-            Text(book.volumeInfo.title)
+//            Text(book.volumeInfo.title)
         }
     }
 }

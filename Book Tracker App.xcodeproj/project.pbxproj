@@ -10,22 +10,9 @@
 		269F9CB12E887B9C00577E6C /* Book Tracker App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Book Tracker App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		2640ECAB2E98100700566A02 /* Exceptions for "Book Tracker App" folder in "Book Tracker App" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				"Book-Tracker-App-Info.plist",
-			);
-			target = 269F9CB02E887B9C00577E6C /* Book Tracker App */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		269F9CB32E887B9C00577E6C /* Book Tracker App */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				2640ECAB2E98100700566A02 /* Exceptions for "Book Tracker App" folder in "Book Tracker App" target */,
-			);
 			path = "Book Tracker App";
 			sourceTree = "<group>";
 		};

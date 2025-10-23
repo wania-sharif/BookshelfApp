@@ -16,7 +16,7 @@ struct BookListItemView: View {
         VStack{
             
             // If book has an image link, load it
-            if let url = book.imageLinks?.thumbnail {
+            if let url = book.volumeInfo.imageLinks?.thumbnail {
                 AsyncImage(url: URL(string: url)){ phase in
                     if let image = phase.image {
                         image

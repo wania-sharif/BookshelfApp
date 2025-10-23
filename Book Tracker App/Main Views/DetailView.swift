@@ -13,31 +13,43 @@ struct DetailView: View {
     
     // MARK: - body
     var body: some View {
-        VStack {
-            BookListItemView(book: book, width: 190, height: 280)
-            
-            Text(book.volumeInfo.title)
-                .font(.title)
-                .padding(10)
-                .kerning(0.3)
-            
-            Text(book.volumeInfo.authors[0])
-                .font(.callout)
-            
-            Button("Save", systemImage: "heart"){
+        ScrollView {
+            VStack {
+                BookListItemView(book: book, width: 190, height: 280)
                 
-            }.buttonStyle(.bordered)
-            
-            Divider()
-                .padding(.top, 10)
-                .padding(.bottom, 30)
+                Text(book.volumeInfo.title)
+                    .font(.title)
+                    .padding(5)
+                    .kerning(0.3)
+                
+                Text(book.volumeInfo.authors[0])
+                    .font(.callout)
+                    .padding(.bottom, 20)
+                
+                HStack {
+                    Button("Save", systemImage: "heart"){
+                        
+                    }
+
+                    Button("Notes", systemImage: "pencil"){
+                        
+                    }
+                }
+                .buttonStyle(.bordered)
+                .padding(.bottom, 10)
+                
+                Divider()
+            }
+            .padding()
+            .clipShape(RoundedRectangle(cornerRadius: 20))
             
             Text(book.description ?? "Description unavailable")
+                .padding(.top, 12)
         }
         .padding()
         .lineSpacing(2)
         .frame(maxWidth: 500)
-        .fontWeight(.light)
+        .foregroundStyle(Color.background2)
     }
 }
 

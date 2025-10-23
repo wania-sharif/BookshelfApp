@@ -6,10 +6,14 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ShelfView: View {
     //MARK: - Properties
-    var books: Books
+    @Query var shelves: [Shelf]
+    @Environment(\.modelContext) var context
+    
+    var shelf: Shelf
     
     var gridColumns = [
         GridItem(.flexible()),
@@ -21,7 +25,8 @@ struct ShelfView: View {
         NavigationStack {
             ScrollView {
                 LazyVGrid(columns: gridColumns, spacing: 18) {
-                    ForEach(books.items){ book in
+                    // Display books in selected shelf
+                    ForEach(shelf.books){ book in
                         VStack{
                             BookListItemView(book: book, width: 130, height: 180)
                             Text(book.volumeInfo.title)
@@ -29,11 +34,11 @@ struct ShelfView: View {
                     }
                 }
             }
-            .navigationTitle("Shelf Name")
+            .navigationTitle(shelf.name)
         }
     }
 }
 
 #Preview {
-    ShelfView(books: Books.example)
+    ShelfView(shelf: Shelf(name: "1", books: [Book.example]))
 }

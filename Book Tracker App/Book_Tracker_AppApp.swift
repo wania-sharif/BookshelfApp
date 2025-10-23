@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
 struct Book_Tracker_AppApp: App {
@@ -22,9 +23,9 @@ struct Book_Tracker_AppApp: App {
                     SearchView()
                 }
                 Tab("My Shelves", systemImage: "square.fill.text.grid.1x2") {
-                    ShelvesView(books: Books.example)
+                    ShelvesView()
                 }
             }
-        }
+        }.modelContainer(for: Shelf.self)
     }
 }

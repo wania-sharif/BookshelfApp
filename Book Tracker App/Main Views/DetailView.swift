@@ -6,10 +6,16 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct DetailView: View {
     // MARK: - properties
+    @Query var shelves: [Shelf]
+    @Environment(\.modelContext) var context
+    
     var book: Book
+    
+    @State var alertShowing = false
     
     // MARK: - body
     var body: some View {
@@ -28,7 +34,7 @@ struct DetailView: View {
                 
                 HStack {
                     Button("Save", systemImage: "heart"){
-                        
+                        alertShowing.toggle()
                     }
 
                     Button("Notes", systemImage: "pencil"){
@@ -46,7 +52,18 @@ struct DetailView: View {
             Text(book.description ?? "Description unavailable")
                 .padding(.top, 12)
         }
-        .padding()
+        // Shelf select menu
+        .alert("Choose shelf", isPresented: $alertShowing){
+            ForEach(shelves) { shelf in
+                Button(shelf.name){
+                    shelf.books.append(book)
+                    if context.hasChanges {
+                        try? context.save()
+                    }
+                    alertShowing.toggle()
+                }
+            }
+        }
         .lineSpacing(2)
         .frame(maxWidth: 500)
         .foregroundStyle(Color.background2)

@@ -20,9 +20,12 @@ struct ShelfView: View {
     var body: some View {
         NavigationStack {
             ScrollView {
-                LazyVGrid(columns: gridColumns, spacing: 10) {
+                LazyVGrid(columns: gridColumns, spacing: 18) {
                     ForEach(books.items){ book in
-                        BookListItemView(book: book, width: 130, height: 180)
+                        VStack{
+                            BookListItemView(book: book, width: 130, height: 180)
+                            Text(book.volumeInfo.title)
+                        }
                     }
                 }
             }

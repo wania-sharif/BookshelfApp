@@ -10,7 +10,7 @@ import SwiftUI
 struct SearchView: View {
     //MARK: properties
     @State private var books: [Book] = []
-    @State private var searchFor: String = "r+f+kuang"
+    @State private var searchFor: String = "r f kuang"
     
     var gridColumns = [
         GridItem(.flexible()),
@@ -21,9 +21,14 @@ struct SearchView: View {
     var body: some View {
         NavigationStack {
             ScrollView {
-                LazyVGrid(columns: gridColumns) {
+                LazyVGrid(columns: gridColumns, spacing: 36) {
                     ForEach(books){ book in
-                        Text(book.volumeInfo.title)
+                        NavigationLink(destination: DetailView(book: book)){
+                            VStack{
+                                BookListItemView(book: book, width: 130, height: 180)
+                                Text(book.volumeInfo.title)
+                            }
+                        }
                     }
                 }
                 .onAppear {
@@ -36,12 +41,13 @@ struct SearchView: View {
             }
             .navigationTitle("Search books")
         }
+        
     }
     
     // MARK: Function to query search and retrieve results
     func fetchData(){
         Task{
-            let urlString = "https://www.googleapis.com/books/v1/volumes?q=" + "\(searchFor)"
+            let urlString = "https://www.googleapis.com/books/v1/volumes?q=\(searchFor)&key=AIzaSyAvHV-C9IDuTYEAIyD9bpi9CLW41yiczlc"
             
             guard let url = URL(string: urlString) else {
                 return

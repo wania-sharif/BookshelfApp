@@ -49,7 +49,7 @@ struct DetailView: View {
             .padding()
             .clipShape(RoundedRectangle(cornerRadius: 20))
             
-            Text(book.description ?? "Description unavailable")
+            Text(book.volumeInfo.description ?? "Description unavailable")
                 .padding(.top, 12)
         }
         // Shelf select menu
@@ -67,6 +67,7 @@ struct DetailView: View {
         .lineSpacing(2)
         .frame(maxWidth: 500)
         .foregroundStyle(Color.background2)
+        .padding()
     }
 }
 

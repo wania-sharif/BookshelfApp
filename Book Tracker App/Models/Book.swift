@@ -50,7 +50,7 @@ struct Book: Codable, Identifiable {
 
 struct VolumeInfo: Codable {
     var title: String
-    var authors: [String]
+    var authors: [String]? = [""]
     var imageLinks: ImageLinks?
     var description: String? = ""
 }

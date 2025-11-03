@@ -21,14 +21,14 @@ struct DetailView: View {
     var body: some View {
         ScrollView {
             VStack {
-                BookListItemView(book: book, width: 190, height: 280)
+                BookListItemView(book: book, width: 150, height: 240)
                 
                 Text(book.volumeInfo.title)
                     .font(.title)
                     .padding(5)
                     .kerning(0.3)
                 
-                Text(book.volumeInfo.authors[0])
+                Text(book.volumeInfo.authors?[0] ?? "")
                     .font(.callout)
                     .padding(.bottom, 20)
                 

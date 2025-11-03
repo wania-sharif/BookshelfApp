@@ -10,7 +10,7 @@ import SwiftUI
 struct SearchView: View {
     //MARK: properties
     @State private var books: [Book] = []
-    @State private var searchFor: String = "r f kuang"
+    @State private var searchFor: String = "mistborn"
     
     var gridColumns = [
         GridItem(.flexible()),
@@ -21,12 +21,20 @@ struct SearchView: View {
     var body: some View {
         NavigationStack {
             ScrollView {
-                LazyVGrid(columns: gridColumns, spacing: 36) {
+                LazyVGrid(columns: gridColumns, spacing: 46) {
+                    // Display all books in search query
                     ForEach(books){ book in
                         NavigationLink(destination: DetailView(book: book)){
                             VStack{
-                                BookListItemView(book: book, width: 130, height: 180)
+                                BookListItemView(book: book, width: 150, height: 180)
+                                    .shadow(radius: 4, x: 9, y: 6)
+                                
                                 Text(book.volumeInfo.title)
+                                    .foregroundStyle(.black)
+                                    .lineLimit(2)
+                                    .frame(maxWidth: 150)
+                                
+                                Spacer()
                             }
                         }
                     }
@@ -40,6 +48,8 @@ struct SearchView: View {
                 }
             }
             .navigationTitle("Search books")
+            .padding(8)
+            .background(Color.background .gradient)
         }
         
     }

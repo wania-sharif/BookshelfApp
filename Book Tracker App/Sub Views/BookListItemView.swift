@@ -21,8 +21,8 @@ struct BookListItemView: View {
                     if let image = phase.image {
                         image
                             .resizable()
-                            .frame(width: width, height: height)
                             .aspectRatio(contentMode: .fit)
+                            .frame(width: width, height: height)
                             .cornerRadius(2)
                         
                         // If load fails, display error image
@@ -37,11 +37,10 @@ struct BookListItemView: View {
                 }
                 .padding()
             }
-//            Text(book.volumeInfo.title)
         }
     }
 }
 
 #Preview {
-    BookListItemView(book: Book.example, width: 180, height: 280)
+    BookListItemView(book: Book.example, width: 180, height: 270)
 }

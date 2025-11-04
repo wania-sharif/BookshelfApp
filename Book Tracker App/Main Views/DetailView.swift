@@ -22,6 +22,7 @@ struct DetailView: View {
         ScrollView {
             VStack {
                 BookListItemView(book: book, width: 150, height: 240)
+                    .shadow(radius: 19, x: 9, y: 6)
                 
                 Text(book.volumeInfo.title)
                     .font(.title)
@@ -32,18 +33,6 @@ struct DetailView: View {
                     .font(.callout)
                     .padding(.bottom, 20)
                 
-                HStack {
-                    Button("Save", systemImage: "heart"){
-                        alertShowing.toggle()
-                    }
-
-                    Button("Notes", systemImage: "pencil"){
-                        
-                    }
-                }
-                .buttonStyle(.bordered)
-                .padding(.bottom, 10)
-                
                 Divider()
             }
             .padding()
@@ -51,6 +40,17 @@ struct DetailView: View {
             
             Text(book.volumeInfo.description ?? "Description unavailable")
                 .padding(.top, 12)
+        }
+        // Save and edit buttons as toolbar group
+        .toolbar(){
+            ToolbarItemGroup(placement: .topBarTrailing){
+                Button("", systemImage: "heart"){
+                    alertShowing.toggle()
+                }
+                Button("", systemImage: "pencil"){
+                    
+                }
+            }
         }
         // Shelf select menu
         .alert("Choose shelf", isPresented: $alertShowing){
@@ -66,8 +66,8 @@ struct DetailView: View {
         }
         .lineSpacing(2)
         .frame(maxWidth: 500)
-        .foregroundStyle(Color.background2)
         .padding()
+        .background(Color.background)
     }
 }
 

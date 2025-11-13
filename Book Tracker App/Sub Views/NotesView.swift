@@ -6,22 +6,25 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct NotesView: View {
     // MARK: - properties
+    @Query var notes: [Note]
     @Environment(\.modelContext) var context
     @Environment(\.dismiss) var dismiss
     
     @State private var noteContent: String = ""
+    @State private var bookNote: Note? = nil
     
-    var book: Book
+    var bookId: String
     
     // MARK: - body
     var body: some View {
         VStack{
             HStack{
                 Button("", systemImage: "checkmark"){
-                    //book.notes = noteContent
+                    bookNote?.text = noteContent
                     
                     if context.hasChanges {
                         try? context.save()
@@ -46,11 +49,10 @@ struct NotesView: View {
                     .frame(minHeight: 500)
                     .clipShape(RoundedRectangle(cornerRadius: 18))
                     .lineSpacing(5)
-                    .onAppear(){
-                        if book.notes.isEmpty {
-                            noteContent = " No notes yet. Add some!"
-                        } else {
-                            noteContent = book.notes
+                    // Populate textbox with existing note contents
+                    .onChange(of: bookNote){
+                        if let note = bookNote {
+                            noteContent = note.text
                         }
                     }
                 
@@ -58,9 +60,24 @@ struct NotesView: View {
             .padding()
         }
         .background(Color.background .gradient)
+        .onAppear(){
+            for note in notes {
+                if note.id == bookId {
+                    bookNote = note
+                    print("Note with id: \(bookId) found")
+                    print(note.text)
+                }
+            }
+            
+            if(bookNote == nil){
+                let newNote = Note(id: bookId)
+                context.insert(newNote)
+                print("New note with id: \(bookId) created")
+            }
+        }
     }
 }
 
 #Preview {
-    NotesView(book: Book.example)
+    NotesView(bookId: "111")
 }

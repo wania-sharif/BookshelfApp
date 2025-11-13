@@ -26,6 +26,6 @@ struct Book_Tracker_AppApp: App {
                     ShelvesView()
                 }
             }
-        }.modelContainer(for: Shelf.self)
+        }.modelContainer(for: [Shelf.self, Note.self])
     }
 }

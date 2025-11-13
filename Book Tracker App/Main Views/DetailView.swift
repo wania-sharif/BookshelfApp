@@ -16,6 +16,7 @@ struct DetailView: View {
     var book: Book
     
     @State var alertShowing = false
+    @State var sheetShowing = false
     
     // MARK: - body
     var body: some View {
@@ -48,7 +49,7 @@ struct DetailView: View {
                     alertShowing.toggle()
                 }
                 Button("", systemImage: "pencil"){
-                    
+                    sheetShowing.toggle()
                 }
             }
         }
@@ -68,6 +69,10 @@ struct DetailView: View {
         .frame(maxWidth: 500)
         .padding()
         .background(Color.background)
+        .sheet(isPresented: $sheetShowing){
+            NotesView(bookId: book.id)
+                .presentationDetents([.medium, .large])
+        }
     }
 }
 

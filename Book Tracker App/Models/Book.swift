@@ -46,11 +46,13 @@ struct Book: Codable, Identifiable {
     
     var id: String
     var volumeInfo: VolumeInfo
+    var notes = ""
 }
 
 struct VolumeInfo: Codable {
     var title: String
     var authors: [String]? = [""]
+    var categories: [String]? = [""]
     var imageLinks: ImageLinks?
     var description: String? = ""
 }

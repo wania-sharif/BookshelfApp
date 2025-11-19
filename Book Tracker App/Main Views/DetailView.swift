@@ -12,6 +12,7 @@ struct DetailView: View {
     // MARK: - properties
     @Query var shelves: [Shelf]
     @Environment(\.modelContext) var context
+    @Environment(\.verticalSizeClass) var verticalSizeClass
     
     var book: Book
     
@@ -20,27 +21,32 @@ struct DetailView: View {
     
     // MARK: - body
     var body: some View {
+        let layout = verticalSizeClass == .compact ? AnyLayout(HStackLayout()) : AnyLayout(VStackLayout())
+        
         ScrollView {
-            VStack {
-                BookListItemView(book: book, width: 150, height: 240)
-                    .shadow(radius: 19, x: 9, y: 6)
+            layout {
+                VStack {
+                    BookListItemView(book: book, width: 150, height: 240)
+                        .shadow(radius: 10, x: 9, y: 9)
+                    
+                    Text(book.volumeInfo.title)
+                        .font(.title2)
+                        .padding(5)
+                        .kerning(0.3)
+                        .bold()
+                    
+                    Text(book.volumeInfo.authors?[0] ?? "")
+                        .font(.callout)
+                        .padding(.bottom, 20)
+                    
+                    if (verticalSizeClass == .regular){ Divider()}
+                }
+                .padding()
+                .clipShape(RoundedRectangle(cornerRadius: 20))
                 
-                Text(book.volumeInfo.title)
-                    .font(.title)
-                    .padding(5)
-                    .kerning(0.3)
-                
-                Text(book.volumeInfo.authors?[0] ?? "")
-                    .font(.callout)
-                    .padding(.bottom, 20)
-                
-                Divider()
+                Text(book.volumeInfo.description ?? "")
+                    .padding(.top, 12)
             }
-            .padding()
-            .clipShape(RoundedRectangle(cornerRadius: 20))
-            
-            Text(book.volumeInfo.description ?? "Description unavailable")
-                .padding(.top, 12)
         }
         // Save and edit buttons as toolbar group
         .toolbar(){
@@ -66,14 +72,14 @@ struct DetailView: View {
             }
         }
         .lineSpacing(2)
-        .frame(maxWidth: 500)
-        .padding()
+        .padding(verticalSizeClass == .compact ? 5 : 20)
         .background(Color.background)
         .sheet(isPresented: $sheetShowing){
             NotesView(bookId: book.id)
                 .presentationDetents([.medium, .large])
         }
     }
+    
 }
 
 #Preview {

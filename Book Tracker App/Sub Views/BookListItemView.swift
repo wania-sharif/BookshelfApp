@@ -27,7 +27,7 @@ struct BookListItemView: View {
                         
                         // If load fails, display error image
                     } else if phase.error != nil {
-                        Image(systemName: "exclamationmark.triangle.fill")
+                        VStack{}
                             .frame(width: width, height: height)
                             .aspectRatio(contentMode: .fit)
                             .border(Color.gray, width: 1)

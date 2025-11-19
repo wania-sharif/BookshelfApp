@@ -8,7 +8,6 @@
 import SwiftUI
 import SwiftData
 
-//TODO: Replace placeholder array with shelf array
 struct ShelvesView: View {
     //MARK: - Properties
     @Query var shelves: [Shelf]
@@ -25,7 +24,7 @@ struct ShelvesView: View {
     var body: some View {
         NavigationStack {
             ScrollView {
-                LazyVGrid(columns: gridColumns, spacing: 30) {
+                LazyVGrid(columns: gridColumns) {
                     ForEach(shelves){ shelf in
                         NavigationLink(destination: ShelfView(shelf: shelf)){
                             HStack{
@@ -33,18 +32,20 @@ struct ShelvesView: View {
                                     Image(systemName: "book")
                                 }
                                 .frame(width: 70)
-                                .border(Color.gray)
-                                Text("ShelfName")
+                                Text(shelf.name)
                                 
                                 Spacer()
                             }
-                            .frame(width: 360, height: 90)
-                            .border(Color.gray)
-                            .foregroundStyle(Color.black)
+                            .frame(width: 360, height: 80)
+                            .background(Color.midnight)
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                            .foregroundStyle(Color.cream)
+                            .fontWeight(.semibold)
                         }
                     }
                 }
             }
+            .background(Color.cream)
             .navigationTitle("My shelves")
             .toolbar(){
                 ToolbarItem(placement: .topBarTrailing){

@@ -26,7 +26,7 @@ struct SearchView: View {
                     ForEach(books){ book in
                         NavigationLink(destination: DetailView(book: book)){
                             VStack{
-                                BookListItemView(book: book, width: 150, height: 180)
+                                BookListItemView(book: book, width: 140, height: 180)
                                     .shadow(radius: 4, x: 9, y: 6)
                                 
                                 Text(book.volumeInfo.title)

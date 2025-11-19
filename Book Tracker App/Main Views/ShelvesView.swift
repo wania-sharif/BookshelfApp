@@ -23,6 +23,7 @@ struct ShelvesView: View {
     //MARK: - Body
     var body: some View {
         NavigationStack {
+            // Display shelves
             ScrollView {
                 LazyVGrid(columns: gridColumns) {
                     ForEach(shelves){ shelf in

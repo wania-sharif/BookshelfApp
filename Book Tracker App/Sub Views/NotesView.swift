@@ -59,7 +59,7 @@ struct NotesView: View {
             }
             .padding()
         }
-        .background(Color.background .gradient)
+        .background(Color.cream .gradient)
         .onAppear(){
             for note in notes {
                 if note.id == bookId {

@@ -18,23 +18,25 @@ struct ShelfView: View {
     var shelf: Shelf
     
     var gridColumns = [
-        GridItem(.flexible()),
-        GridItem(.flexible()),
+        GridItem(.adaptive(minimum: 160)),
     ]
     
     //MARK: - Body
     var body: some View {
         NavigationStack {
             ScrollView {
-                LazyVGrid(columns: gridColumns, spacing: 18) {
+                LazyVGrid(columns: gridColumns, spacing: 38) {
                     // Display books in selected shelf
                     ForEach(shelf.books){ book in
                         NavigationLink(destination: DetailView(book: book)){
-                            VStack{
-                                BookListItemView(book: book, width: 130, height: 180)
+                            VStack(){
+                                BookListItemView(book: book, width: 140, height: 180)
                                 Text(book.volumeInfo.title)
                                     .foregroundStyle(.black)
+                                    .lineLimit(2)
+                                    .frame(maxWidth: 150)
                             }
+                            .frame(width: 160, height: 240)
                             // Make list item draggable
                             .draggable(book.id){
                                 //what the preview looks like

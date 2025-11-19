@@ -13,8 +13,7 @@ struct SearchView: View {
     @State private var searchFor: String = "mistborn"
     
     var gridColumns = [
-        GridItem(.flexible()),
-        GridItem(.flexible())
+        GridItem(.adaptive(minimum: 160))
     ]
     
     //MARK: body
@@ -49,7 +48,7 @@ struct SearchView: View {
             }
             .navigationTitle("Search books")
             .padding(8)
-            .background(Color.background .gradient)
+            .background(Color.cream .gradient)
         }
         
     }

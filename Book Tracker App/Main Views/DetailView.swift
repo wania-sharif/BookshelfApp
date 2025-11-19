@@ -73,7 +73,7 @@ struct DetailView: View {
         }
         .lineSpacing(2)
         .padding(verticalSizeClass == .compact ? 5 : 20)
-        .background(Color.background)
+        .background(Color.cream)
         .sheet(isPresented: $sheetShowing){
             NotesView(bookId: book.id)
                 .presentationDetents([.medium, .large])

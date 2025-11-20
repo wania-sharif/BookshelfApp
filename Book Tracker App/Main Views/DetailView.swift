@@ -18,13 +18,13 @@ struct DetailView: View {
     var book: Book
     
     @State var alertShowing = false
-    @State var sheetShowing = false
     
     // MARK: - body
     var body: some View {
-        let layout = verticalSizeClass == .compact ? AnyLayout(HStackLayout()) : AnyLayout(VStackLayout())
+        let layout = verticalSizeClass == .compact ? AnyLayout(HStackLayout(alignment: .top)) : AnyLayout(VStackLayout())
         
         ScrollView {
+            // If device has small verticality, stack components horizontally
             layout {
                 VStack {
                     BookListItemView(book: book, width: 150, height: 240)
@@ -46,7 +46,9 @@ struct DetailView: View {
                 .clipShape(RoundedRectangle(cornerRadius: 20))
                 
                 Text(book.volumeInfo.description ?? "")
-                    .padding(.top, 12)
+                    .padding(.top, verticalSizeClass == .regular ? 12 : 40)
+                    .frame(maxWidth: 600)
+                    .font(.callout)
             }
         }
         // Save and edit buttons as toolbar group
@@ -55,8 +57,8 @@ struct DetailView: View {
                 Button("", systemImage: "plus"){
                     alertShowing.toggle()
                 }
-                Button("", systemImage: "pencil"){
-                    sheetShowing.toggle()
+                NavigationLink(destination: NotesView(bookId: book.id)){
+                    Label("", systemImage: "long.text.page.and.pencil")
                 }
             }
         }
@@ -71,17 +73,11 @@ struct DetailView: View {
                     alertShowing.toggle()
                 }
             }
-            Button("Cancel"){
-                dismiss()
-            }
+            Button("Cancel"){}
         }
         .lineSpacing(2)
         .padding(verticalSizeClass == .compact ? 5 : 20)
         .background(Color.cream)
-        .sheet(isPresented: $sheetShowing){
-            NotesView(bookId: book.id)
-                .presentationDetents([.medium, .large])
-        }
     }
     
 }

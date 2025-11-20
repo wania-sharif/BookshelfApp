@@ -31,7 +31,7 @@ struct ShelvesView: View {
                         NavigationLink(destination: ShelfView(shelf: shelf)){
                             HStack{
                                 Section {
-                                    Image(systemName: "book")
+                                    Image(systemName: "books.vertical")
                                 }
                                 .frame(width: 70)
                                 Text(shelf.name)
@@ -42,7 +42,6 @@ struct ShelvesView: View {
                             .background(Color.midnight)
                             .clipShape(RoundedRectangle(cornerRadius: 10))
                             .foregroundStyle(Color.cream)
-                            .fontWeight(.semibold)
                         }
                     }
                 }
@@ -67,6 +66,11 @@ struct ShelvesView: View {
                 
                 Button("Cancel"){
                     dismiss()
+                }
+            }
+            .overlay {
+                if shelves.isEmpty {
+                    ContentUnavailableView("Create a shelf", systemImage: "books.vertical", description: Text("Create shelves to add books to."))
                 }
             }
         }

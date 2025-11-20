@@ -52,7 +52,7 @@ struct DetailView: View {
         // Save and edit buttons as toolbar group
         .toolbar(){
             ToolbarItemGroup(placement: .topBarTrailing){
-                Button("Add", systemImage: "plus"){
+                Button("", systemImage: "plus"){
                     alertShowing.toggle()
                 }
                 Button("", systemImage: "pencil"){

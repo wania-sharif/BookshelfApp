@@ -80,6 +80,19 @@ struct ShelfView: View {
                 }
             }
             .navigationTitle(shelf.name)
+            .overlay {
+                if shelf.books.isEmpty {
+                    ContentUnavailableView {
+                        Label("Empty shelf", systemImage: "book")
+                    } description: {
+                        Text("There are no books in this shelf")
+                    } actions: {
+                        NavigationLink(destination: SearchView()){
+                            Text("Add some")
+                        }
+                    }
+                }
+            }
         }
     }
 }

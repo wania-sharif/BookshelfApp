@@ -10,7 +10,7 @@ import SwiftUI
 struct SearchView: View {
     //MARK: properties
     @State private var books: [Book] = []
-    @State private var searchFor: String = "mistborn"
+    @State private var searchFor: String = ""
     
     var gridColumns = [
         GridItem(.adaptive(minimum: 160))
@@ -38,9 +38,6 @@ struct SearchView: View {
                         }
                     }
                 }
-                .onAppear {
-                    fetchData()
-                }
                 .searchable(text: $searchFor)   // Bind searchbar with variable
                 .onSubmit(of: .search) {
                     fetchData()
@@ -49,6 +46,11 @@ struct SearchView: View {
             .navigationTitle("Search books")
             .padding(8)
             .background(Color.cream .gradient)
+            .overlay {
+                if searchFor.isEmpty {
+                    ContentUnavailableView("Browse works", systemImage: "magnifyingglass", description: Text("Search by author, title, or genre"))
+                }
+            }
         }
         
     }

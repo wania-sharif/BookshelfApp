@@ -13,6 +13,7 @@ struct DetailView: View {
     @Query var shelves: [Shelf]
     @Environment(\.modelContext) var context
     @Environment(\.verticalSizeClass) var verticalSizeClass
+    @Environment(\.dismiss) var dismiss
     
     var book: Book
     
@@ -51,7 +52,7 @@ struct DetailView: View {
         // Save and edit buttons as toolbar group
         .toolbar(){
             ToolbarItemGroup(placement: .topBarTrailing){
-                Button("", systemImage: "heart"){
+                Button("Add", systemImage: "plus"){
                     alertShowing.toggle()
                 }
                 Button("", systemImage: "pencil"){
@@ -69,6 +70,9 @@ struct DetailView: View {
                     }
                     alertShowing.toggle()
                 }
+            }
+            Button("Cancel"){
+                dismiss()
             }
         }
         .lineSpacing(2)

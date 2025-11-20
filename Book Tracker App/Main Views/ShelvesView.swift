@@ -12,6 +12,7 @@ struct ShelvesView: View {
     //MARK: - Properties
     @Query var shelves: [Shelf]
     @Environment(\.modelContext) var context
+    @Environment(\.dismiss) var dismiss
     
     var gridColumns = [
         GridItem(.flexible())
@@ -62,6 +63,10 @@ struct ShelvesView: View {
                 Button("Add shelf"){
                     let newShelf = Shelf(name: newShelfName)
                     context.insert(newShelf)
+                }
+                
+                Button("Cancel"){
+                    dismiss()
                 }
             }
         }

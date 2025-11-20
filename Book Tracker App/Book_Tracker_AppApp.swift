@@ -19,9 +19,10 @@ struct Book_Tracker_AppApp: App {
             // Display OnBoarding if app is run for the first time
             if showOnboarding {
                 TabView{
-                    OnBoardingView(onBoarding: $showOnboarding, titleText: "Welcome to Bookshelf!", descriptiontText: "Keep track of all your reads and plan your next one", image: "book")
+                    OnBoardingView(onBoarding: $showOnboarding, titleText: "Welcome to Bookshelf!", descriptiontText: "Keep track of all your reads and plan your next ones.", image: "books.vertical")
                     OnBoardingView(onBoarding: $showOnboarding, titleText: "Search Books", descriptiontText: "Search for books by title, author, or genre.", image: "magnifyingglass")
-                    OnBoardingView(onBoarding: $showOnboarding, titleText: "Create shelves", descriptiontText: "Create shelves to organize your books", image: "list.bullet")
+                    OnBoardingView(onBoarding: $showOnboarding, titleText: "Create shelves", descriptiontText: "Create shelves to organize your books", image: "book")
+                    OnBoardingView(onBoarding: $showOnboarding, titleText: "Take notes", descriptiontText: "Notes can be added to a book.", image: "pencil.and.scribble")
                     OnBoardingView(onBoarding: $showOnboarding, titleText: "Lets go!", descriptiontText: "", image: "heart", lastIndex:  true)
                 }.tabViewStyle(.page)
                     .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
@@ -29,10 +30,7 @@ struct Book_Tracker_AppApp: App {
             else{
                 // Display regular app view
                 TabView {
-//                    Tab("Home", systemImage: "house") {
-//                        HomeView()
-//                    }
-                    Tab("My Shelves", systemImage: "square.fill.text.grid.1x2") {
+                    Tab("My Shelves", systemImage: "books.vertical") {
                         ShelvesView()
                     }
                     Tab("Search", systemImage: "magnifyingglass") {

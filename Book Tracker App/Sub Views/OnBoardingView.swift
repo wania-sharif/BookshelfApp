@@ -19,6 +19,10 @@ struct OnBoardingView: View {
     // MARK: - Body
     var body: some View {
         VStack(alignment:.center, spacing: 20){
+            if !lastIndex{
+                Image(systemName: image)
+                    .font(.custom("", size: 46))
+            }
             Text(titleText)
                 .font(.largeTitle)
                 .fontWeight(.semibold)
@@ -29,14 +33,13 @@ struct OnBoardingView: View {
                     .multilineTextAlignment(.center)
                     .font(.headline)
             }
-
-            if lastIndex{
+            
+            // Display button if it is the last tab
+            if lastIndex {
                 Button("Start"){
                     onBoarding.toggle()
-                }.buttonStyle(.bordered)
-                    .tint(.blue)
-                    .foregroundStyle(.black)
-                    .padding(.top)
+                }
+                .tint(.blue)
             }
         }.padding()
             .fontWeight(.regular)
@@ -44,7 +47,7 @@ struct OnBoardingView: View {
 }
 
 #Preview {
-    OnBoardingView(onBoarding: .constant(true), titleText: "Welcome to Bookshelf!", descriptiontText: "Keep track of all your reads and plan your next one!", image: "book")
+    OnBoardingView(onBoarding: .constant(true), titleText: "Welcome to Bookshelf!", descriptiontText: "Keep track of all your reads and plan your next one!", image: "books.vertical")
 }
 
 #Preview("last"){

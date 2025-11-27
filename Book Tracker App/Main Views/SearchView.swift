@@ -47,7 +47,7 @@ struct SearchView: View {
             .padding(8)
             .background(Color.cream .gradient)
             .overlay {
-                if searchFor.isEmpty {
+                if books.isEmpty {
                     ContentUnavailableView("Browse works", systemImage: "magnifyingglass", description: Text("Search by author, title, or genre"))
                 }
             }

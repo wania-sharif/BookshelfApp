@@ -66,11 +66,16 @@ struct DetailView: View {
         .alert("Choose shelf", isPresented: $alertShowing){
             ForEach(shelves) { shelf in
                 Button(shelf.name){
-                    shelf.books.append(book)
-                    if context.hasChanges {
-                        try? context.save()
+                    // Find book in shelf
+                    let has = shelf.books.contains {$0.id == book.id}
+                    // If it is not already in shelf, add it
+                    if has == false {
+                        shelf.books.append(book)
+                        if context.hasChanges {
+                            try? context.save()
+                        }
+                        alertShowing.toggle()
                     }
-                    alertShowing.toggle()
                 }
             }
             Button("Cancel"){}

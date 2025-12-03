@@ -80,6 +80,7 @@ struct ShelfView: View {
                 }
             }
             .navigationTitle(shelf.name)
+            .background(Color.cream .gradient)
             .overlay {
                 if shelf.books.isEmpty {
                     ContentUnavailableView {

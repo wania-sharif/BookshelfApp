@@ -46,7 +46,7 @@ struct ShelvesView: View {
                     }
                 }
             }
-            .background(Color.cream)
+            .background(Color.cream .gradient)
             .navigationTitle("My shelves")
             .toolbar(){
                 ToolbarItem(placement: .topBarTrailing){

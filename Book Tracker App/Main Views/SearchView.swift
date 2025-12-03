@@ -32,6 +32,7 @@ struct SearchView: View {
                                     .foregroundStyle(.black)
                                     .lineLimit(2)
                                     .frame(maxWidth: 150)
+                                    .fontWeight(.semibold)
                                 
                                 Spacer()
                             }
@@ -64,7 +65,7 @@ struct SearchView: View {
                 return
             }
             
-            // try to decode json data and sort by votes
+            // try to decode json data
             do {
                 let (data,_) = try await
                 URLSession.shared.data(from: url)

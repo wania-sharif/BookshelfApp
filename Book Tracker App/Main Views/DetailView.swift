@@ -38,9 +38,15 @@ struct DetailView: View {
                     
                     Text(book.volumeInfo.authors?[0] ?? "")
                         .font(.callout)
-                        .padding(.bottom, 20)
+                        .padding(.bottom)
                     
-                    if (verticalSizeClass == .regular){ Divider()}
+                    if let categories = book.volumeInfo.categories {
+                        Text(categories[0].uppercased())
+                            .font(.caption)
+                            .padding(.bottom)
+                    }
+                    
+                    if (verticalSizeClass == .regular){ Divider() }
                 }
                 .padding()
                 .clipShape(RoundedRectangle(cornerRadius: 20))

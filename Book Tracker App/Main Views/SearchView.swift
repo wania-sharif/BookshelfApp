@@ -59,7 +59,7 @@ struct SearchView: View {
     // MARK: Function to query search and retrieve results
     func fetchData(){
         Task{
-            let urlString = "https://www.googleapis.com/books/v1/volumes?q=\(searchFor)&key=AIzaSyAvHV-C9IDuTYEAIyD9bpi9CLW41yiczlc"
+            let urlString = "https://www.googleapis.com/books/v1/volumes?q=\(searchFor)&key=" + APIConfig.API_KEY
             
             guard let url = URL(string: urlString) else {
                 return

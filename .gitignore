@@ -1,0 +1,39 @@
+# Xcode
+# ========================
+config.swift
+build/
+DerivedData/
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata/
+*.xccheckout
+*.moved-aside
+*.xcuserstate 
+*.xcscmblueprint
+*.xccheckout
+@shared_changesheet/
+
+# Swift Package Manager
+# ========================
+.build/
+.swiftpm/
+Packages/
+Package.pins
+Package.resolved
+
+# CocoaPods (Uncomment if you use CocoaPods and don't want to commit the Pods folder)
+# Pods/
+
+# Carthage
+# ========================
+Carthage/Build/
+
+# OS-specific files
+# ========================
+.DS_Store

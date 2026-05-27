@@ -6,8 +6,15 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		26CFA10A2FC676BA00ADD82F /* config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CFA1092FC6768300ADD82F /* config.swift */; };
+		26CFA10C2FC6775D00ADD82F /* .gitignore in Sources */ = {isa = PBXBuildFile; fileRef = 26CFA10B2FC6775600ADD82F /* .gitignore */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		269F9CB12E887B9C00577E6C /* Book Tracker App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Book Tracker App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		26CFA1092FC6768300ADD82F /* config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = config.swift; sourceTree = "<group>"; };
+		26CFA10B2FC6775600ADD82F /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -32,6 +39,8 @@
 		269F9CA82E887B9C00577E6C = {
 			isa = PBXGroup;
 			children = (
+				26CFA10B2FC6775600ADD82F /* .gitignore */,
+				26CFA1092FC6768300ADD82F /* config.swift */,
 				269F9CB32E887B9C00577E6C /* Book Tracker App */,
 				269F9CB22E887B9C00577E6C /* Products */,
 			);
@@ -119,6 +128,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26CFA10A2FC676BA00ADD82F /* config.swift in Sources */,
+				26CFA10C2FC6775D00ADD82F /* .gitignore in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
